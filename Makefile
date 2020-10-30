@@ -12,7 +12,7 @@
 
 NAME = libasm.a
 
-ASMSRCS =	./libasm/ft_strlen.c \
+ASMSRCS =	./libasm/ft_strlen.s \
 			./libasm/ft_strcpy.s \
 			./libasm/ft_strcmp.s \
 			./libasm/ft_write.s \

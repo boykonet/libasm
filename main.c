@@ -12,8 +12,7 @@
 
 #include <string.h>
 #include "./libasm/libasm.h"
-
-int			ft_strcmp_test(char *s1, char *s2);
+#include <stdio.h>
 
 static int		check_write(void)
 {
@@ -26,11 +25,15 @@ static int		check_write(void)
 	errno = 0;
 	a = write(1, buff, 14);
 	str = strerror(errno);
+	write(1, "\n", 1);
 	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 	errno = 0;
 	b = ft_write(1, buff, 14);
 	str = strerror(errno);
+	write(1, "\n", 1);
 	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 	if (a != b)
 		write(1, "Error!\n", 7);
 }
@@ -40,6 +43,8 @@ static void		check_read(void)
 	char		buff[30];
 	char		*str;
 	int			fd;
+	int			a;
+	int			b;
 
 	if ((fd = open("ex", O_RDONLY)) == -1)
 		write(1, "Error! File descriptor not opened!\n", 35);
@@ -67,10 +72,6 @@ static void		check_read(void)
 		write(1, "Error!\n", 7);
 }
 
-static void		check_strdup(void)
-{
-}
-
 int		main(void)
 {
 	int		fd;
@@ -79,17 +80,19 @@ int		main(void)
 	char	*str;
 
 	a = ft_strlen("aaabbbccc");
-
 	ft_strcpy(buff3, "aaabbbccc");
-	write(1, buff, ft_strlen(buff));
-	printf("ft_strlen after ft_strcpy: %zu\n", ft_strlen(buff3));
+	write(1, buff3, ft_strlen(buff3));
+	write(1, "\n", 1);
+	a = ft_strlen(buff3);
 
-   	printf("ft_strcmp - %d\n", ft_strcmp("aaabbbccc", "aaabbbccc"));
+   	a = ft_strcmp("aaabbbccc", "aaabbbccc");
 
-	printf("ft_strcmp - %d\n", ft_strcmp("aaabbbA", "aaabbbccc"));
+	a = ft_strcmp("aaabbbA", "aaabbbccc");
 
-	printf("ft_strcmp - %d\n", ft_strcmp("aaabbbccc", "aaabbbA"));
+	a = ft_strcmp("aaabbbccc", "aaabbbA");
 
+	check_write();
+	check_read();
 	
 	errno = 0;
 	str = ft_strdup("aaabbbccc");

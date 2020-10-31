@@ -26,8 +26,8 @@ INCLUDES = ./libasm/libasm.h
 all: $(NAME)
 
 $(NAME): $(ASMOBJS) $(INCLUDES)
-	ar rc $(NAME) $(ASMOBJS)
-	ranlib $(NAME)
+	ar rc $@ $(ASMOBJS)
+	ranlib $@
 
 %.o: %.s
 	nasm -fmacho64 $<
